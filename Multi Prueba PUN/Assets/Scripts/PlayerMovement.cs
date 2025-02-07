@@ -4,31 +4,24 @@ using Photon.Pun;
 public class PlayerMovement : MonoBehaviourPun
 {
     public float speed = 5f;
-    public GameObject bulletPrefab;
-    public Transform firePoint;
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
         if (photonView.IsMine)
         {
-            // Movimiento
-            float moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            float moveZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-            transform.Translate(new Vector3(moveX, 0, moveZ));
+            // Movimiento en los ejes horizontal y vertical
+            float moveX = Input.GetAxis("Horizontal");
+            float moveZ = Input.GetAxis("Vertical");
 
-            // Disparar
-            if (Input.GetButtonDown("Fire1"))
-            {
-                photonView.RPC("Shoot", RpcTarget.All);
-            }
+            // Aplicar movimiento al Rigidbody
+            Vector3 movement = new Vector3(moveX, 0, moveZ) * speed;
+            rb.velocity = movement;
         }
-    }
-
-    [PunRPC]
-    void Shoot()
-    {
-        // Instanciar el proyectil
-        GameObject bullet = PhotonNetwork.Instantiate("Bullet", firePoint.position, firePoint.rotation);
-        bullet.GetComponent<Bullet>().photonView.TransferOwnership(photonView.Owner);
     }
 }

@@ -3,31 +3,44 @@ using Photon.Pun;
 
 public class Bullet : MonoBehaviourPun
 {
-    public float speed = 10f;
-    public float lifetime = 2f;
+    private float speed;
+    private Photon.Realtime.Player owner;
+
+    public void Initialize(float bulletSpeed, Photon.Realtime.Player bulletOwner)
+    {
+        speed = bulletSpeed;
+        owner = bulletOwner;
+    }
 
     void Start()
     {
         // Destruir el proyectil después de un tiempo
         if (photonView.IsMine)
         {
-            Destroy(gameObject, lifetime);
+            Invoke("DestroyBullet", 2f); // Destruir después de 2 segundos
         }
     }
 
     void Update()
     {
-        // Mover el proyectil
+        // Mover el proyectil hacia adelante
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (photonView.IsMine && other.CompareTag("Player"))
+        if (photonView.IsMine && !other.CompareTag("Player"))
         {
-            // Aquí puedes añadir lógica para dañar al jugador
-            Debug.Log("Jugador golpeado!");
-            PhotonNetwork.Destroy(gameObject);
+            // Destruir el proyectil si choca con algo que no sea un jugador
+            DestroyBullet();
+        }
+    }
+
+    void DestroyBullet()
+    {
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject); // Destruir en todos los clientes
         }
     }
 }

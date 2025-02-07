@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 5277713629194397352}
   - component: {fileID: 7376821090415069637}
   - component: {fileID: -7705223600933382875}
+  - component: {fileID: -1348174817294089648}
+  - component: {fileID: -940674525139392035}
+  - component: {fileID: -504796171373956678}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -129,7 +132,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -940674525139392035}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -172,9 +176,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca14d53eeecde74fb09f296fc4ac775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  bulletPrefab: {fileID: 1272872487539807941}
+  speed: 10
+--- !u!114 &-1348174817294089648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272872487539807941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714424db0b13fcb4c9332809183d7aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7680066456879020692, guid: 59662a8b8aa922645843f8921c397a6a,
+    type: 3}
   firePoint: {fileID: 5013442557450890250}
+  bulletSpeed: 25
+--- !u!114 &-940674525139392035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272872487539807941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &-504796171373956678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272872487539807941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 771c37665ede9ea4ea091cdeca609ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8211182797527041497
 GameObject:
   m_ObjectHideFlags: 0
